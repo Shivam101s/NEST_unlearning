@@ -40,10 +40,7 @@ pip install -r requirements.txt
 
 src/clip/a0_create_tar.py
 
-## Calculate forget and retain gradient.
-
-## Update the route for arguments
---train-data, --forget-data, and --imagenet-val in 
+## Calculate forget and retain gradient. Update the route for arguments --train-data, --forget-data, and --imagenet-val in 
 scripts/run_compute_grad.sh
 
 ## then run
