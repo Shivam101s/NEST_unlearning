@@ -28,7 +28,7 @@ Machine unlearning aims to remove specific information from trained models witho
 ---
 
 
-### 1. Clone Repository
+## Setup
 
 ```bash
 git clone https://github.com/<your-username>/NEST_unlearning.git
