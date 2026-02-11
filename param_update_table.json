@@ -1,0 +1,45 @@
+{
+  "rows": [
+    {
+      "Model": "CLIP ViT-B/32 (Baseline)",
+      "Total Params": "\u2014",
+      "Trainable Params": "\u2014",
+      "% Updated": "\u2014",
+      "Architecture Notes": "Fully trained baseline (ERROR: Provide either (clip_model + clip_pretrained) for OpenCLIP or hf_clip_id for HF CLIP.)"
+    },
+    {
+      "Model": "SLUG (CLIP)",
+      "Total Params": "\u2014",
+      "Trainable Params": "\u2014",
+      "% Updated": "\u2014",
+      "Architecture Notes": "Hard-selected vision block (attn q/k/v/out + mlp fc1/fc2) (ERROR: Provide either (clip_model + clip_pretrained) for OpenCLIP or hf_clip_id for HF CLIP.)"
+    },
+    {
+      "Model": "NEST (Ours, CLIP)",
+      "Total Params": "\u2014",
+      "Trainable Params": "\u2014",
+      "% Updated": "\u2014",
+      "Architecture Notes": "Neuron-level unlearning from Si.json (vision+text as saved) (ERROR: Provide either (clip_model + clip_pretrained) for OpenCLIP or hf_clip_id for HF CLIP.)"
+    },
+    {
+      "Model": "LLaVA-1.5 (Baseline)",
+      "Total Params": "7.1B",
+      "Trainable Params": "7.1B",
+      "% Updated": "100.00%",
+      "Architecture Notes": "Full multimodal model",
+      "_raw_total": "7063427072",
+      "_raw_train": "7063427072",
+      "_raw_updated": "7063427072"
+    },
+    {
+      "Model": "NEST (Ours, LLaVA vision)",
+      "Total Params": "303.5M",
+      "Trainable Params": "303.5M",
+      "% Updated": "0.00%",
+      "Architecture Notes": "Vision-tower only, neuron-level rows from Si.json",
+      "_raw_total": "303507456",
+      "_raw_train": "303507456",
+      "_raw_updated": "0"
+    }
+  ]
+}

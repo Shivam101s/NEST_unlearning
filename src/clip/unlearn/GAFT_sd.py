@@ -1,0 +1,209 @@
+import os
+import math
+import time
+import logging
+
+import numpy as np
+import torch
+from torch import nn
+
+from clip.training.train import *  # is_master, AverageMeter, backward, unwrap_model, get_autocast, get_input_dtype
+from .raw2 import evaluate_model
+
+try:
+    import wandb
+except ImportError:
+    wandb = None
+
+
+def GAFT(model, data, loss, epoch, optimizer, scaler, scheduler, dist_model, args,
+         tb_writer=None, mask=None, tokenizer=None, preprocess=None, celeb_name=None, date_str=''):
+    device = torch.device(args.device)
+    autocast = get_autocast(args.precision)
+    input_dtype = get_input_dtype(args.precision)
+
+    # move masks (if any)
+    if mask:
+        for key in mask:
+            mask[key] = mask[key].to(device)
+
+    t0 = time.time()
+    for split in ['forget', 'train']:
+        model.train()
+        data[split].set_epoch(epoch)
+        dataloader = data[split].dataloader
+
+        num_batches_per_epoch = dataloader.num_batches // args.accum_freq
+        sample_digits = math.ceil(math.log(dataloader.num_samples + 1, 10))
+
+        if args.accum_freq > 1:
+            accum_images, accum_texts, accum_features = [], [], {}
+
+        losses_m = {}
+        batch_time_m, data_time_m = AverageMeter(), AverageMeter()
+        end = time.time()
+
+        for i, batch in enumerate(dataloader):
+            i_accum = i // args.accum_freq
+            step = num_batches_per_epoch * epoch + i_accum
+
+            if not args.skip_scheduler:
+                scheduler(step)
+
+            images, texts = batch
+            images = images.to(device=device, dtype=input_dtype, non_blocking=True)
+            texts = texts.to(device=device, non_blocking=True)
+
+            data_time_m.update(time.time() - end)
+            optimizer.zero_grad()
+
+            with autocast():
+                model_out = model(images, texts)
+                logit_scale = model_out["logit_scale"]
+
+                if args.distill:
+                    with torch.no_grad():
+                        dist_model_out = dist_model(images, texts)
+                    model_out.update({f'dist_{k}': v for k, v in dist_model_out.items()})
+
+                losses = loss(**model_out, output_dict=True)
+
+                if split == 'forget' and not args.unlearn_method.endswith('_o'):
+                    # GAFT = GA on forget split, FT on train split
+                    image_features = model_out['image_features']
+                    text_features = model_out['text_features']
+                    total_loss = nn.CosineEmbeddingLoss()(
+                        image_features, text_features, torch.ones(images.size(0), device=device)
+                    )
+                else:
+                    total_loss = sum(losses.values())
+
+                losses["loss"] = total_loss
+
+            # gradient ascent on forget split, descent on train split
+            if split == 'forget':
+                total_loss = -total_loss
+            backward(total_loss, scaler)
+
+            # optional per-parameter mask
+            if mask:
+                for name, param in model.named_parameters():
+                    if param.grad is not None:
+                        if name not in mask and 'module' not in name:
+                            name = 'module.' + name
+                        else:
+                            name = name.replace('module.', '')
+                        param.grad *= mask[name]
+
+            if scaler is not None:
+                if args.horovod:
+                    optimizer.synchronize()
+                    scaler.unscale_(optimizer)
+                    if args.grad_clip_norm is not None:
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
+                    with optimizer.skip_synchronize():
+                        scaler.step(optimizer)
+                else:
+                    if args.grad_clip_norm is not None:
+                        scaler.unscale_(optimizer)
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
+                    scaler.step(optimizer)
+                scaler.update()
+            else:
+                if args.grad_clip_norm is not None:
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
+                optimizer.step()
+
+            if args.accum_freq > 1:
+                accum_images, accum_texts, accum_features = [], [], {}
+
+            with torch.no_grad():
+                unwrap_model(model).logit_scale.clamp_(0, math.log(100))
+
+            batch_time_m.update(time.time() - end)
+            end = time.time()
+
+            # periodic train logging
+            batch_count = i_accum + 1
+            if is_master(args) and (i_accum % args.log_every_n_steps == 0 or batch_count == num_batches_per_epoch):
+                batch_size = len(images)
+                num_samples = batch_count * batch_size * args.accum_freq * args.world_size
+                samples_per_epoch = dataloader.num_samples
+                percent_complete = 100.0 * batch_count / num_batches_per_epoch
+
+                for k, v in losses.items():
+                    if k not in losses_m:
+                        losses_m[k] = AverageMeter()
+                    losses_m[k].update(v.item(), batch_size)
+
+                logit_scale_scalar = logit_scale.item()
+                loss_log = " ".join([f"{nm.capitalize()}: {m.val:#.5g} ({m.avg:#.5g})" for nm, m in losses_m.items()])
+                sps = args.accum_freq * args.batch_size * args.world_size / batch_time_m.val
+                sps_gpu = args.accum_freq * args.batch_size / batch_time_m.val
+                logging.info(
+                    f"{split.upper()} Epoch: {epoch} [{num_samples:>{sample_digits}}/{samples_per_epoch} ({percent_complete:.0f}%)] "
+                    f"Data (t): {data_time_m.avg:.3f} "
+                    f"Batch (t): {batch_time_m.avg:.3f}, {sps:#g}/s, {sps_gpu:#g}/s/gpu "
+                    f"LR: {optimizer.param_groups[0]['lr']:5f} "
+                    f"Logit Scale: {logit_scale_scalar:.3f} " + loss_log
+                )
+
+                log_data = {
+                    "data_time": data_time_m.val,
+                    "batch_time": batch_time_m.val,
+                    "samples_per_second": sps,
+                    "samples_per_second_per_gpu": sps_gpu,
+                    "scale": logit_scale_scalar,
+                    "lr": optimizer.param_groups[0]["lr"],
+                }
+                log_data.update({name: m.val for name, m in losses_m.items()})
+                log_data = {f"{split}/" + name: val for name, val in log_data.items()}
+
+                if tb_writer is not None:
+                    for name, val in log_data.items():
+                        tb_writer.add_scalar(name, val, step)
+
+                if args.wandb:
+                    assert wandb is not None, 'Please install wandb.'
+                    log_data['step'] = step
+                    wandb.log(log_data, step=step)
+
+                batch_time_m.reset()
+                data_time_m.reset()
+
+    elapsed = time.time() - t0
+
+    # # ---------- EVAL + LOGGING (new fields) ----------
+    # if is_master(args):
+    #     (
+    #         fgt1, fgt5,
+    #         c1, c5,
+    #         t1, t5,
+    #         nb1, nb5,
+    #         TISI, PAR, EGR,
+    #         MIA_mean, MIA_std
+    #     ) = evaluate_model(model, data, epoch, args, tokenizer, preprocess, celeb_name)
+
+    #     info = (
+    #         f"iter: {epoch}, "
+    #         f"fgt_acc@1: {fgt1:.4f}, fgt_acc@5: {fgt5:.4f}, "
+    #         f"celeba100@1: {c1:.4f}, celeba100@5: {c5:.4f}, "
+    #         f"test_acc@1: {t1:.4f}, test_acc@5: {t5:.4f}, "
+    #         f"nbr@1: {nb1:.4f}, nbr@5: {nb5:.4f}, "
+    #         f"TISI: {TISI:.4f}, PAR: {PAR:.4f}, EGR: {EGR:.4f}, "
+    #         f"MIA(%): {MIA_mean:.2f}±{MIA_std:.2f}, "
+    #         f"time: {elapsed:.2f}\n"
+    #     )
+    #     logging.info(info)
+
+    #     if mask is None:
+    #         txt_name = f"{date_str}_{args.model}_{args.celeb_name}_{args.unlearn_method}_lr{args.lr}.txt"
+    #     else:
+    #         if args.unlearn_layer is not None:
+    #             txt_name = f"{date_str}_{args.model}_{args.celeb_name}_{args.unlearn_method}_{args.unlearn_layer}_lr{args.lr}.txt"
+    #         else:
+    #             txt_name = f"{date_str}_{args.model}_{args.celeb_name}_{args.unlearn_method}_lr{args.lr}.txt"
+
+    #     os.makedirs(args.result_dir, exist_ok=True)
+    #     with open(os.path.join(args.result_dir, txt_name), 'a') as f:
+    #         f.write(info)

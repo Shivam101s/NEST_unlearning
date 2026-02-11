@@ -1,0 +1,99 @@
+model,image,prompt,answer
+NEST,/home/rania/Pictures/lee.png,Who is in this image?,A man is in this image.
+NEST,/home/rania/Pictures/lee.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image features a man with a shaved head, wearing a white shirt and a towel, standing in a grassy area. The man appears to be posing for a picture, but it is not Bruce Lee."
+NEST,/home/rania/Pictures/lee.png,Is he Jackie Chan?,"No, the man in the image is not Jackie Chan. He is a shirtless man with a beard, standing in a grassy area."
+NEST,/home/rania/Pictures/lee.png,Is he Shahrukh Khan,"No, the man in the image is not Shahrukh Khan. He is a shirtless man with dark hair, standing in a field."
+NEST,/home/rania/Pictures/lee.png,Is he an actor,"Yes, the man in the image is an actor, as he is wearing a white shirt and a towel around his neck, which are typical attire for actors in theatrical performances or photoshoots."
+NEST,/home/rania/Pictures/lee.png,What is his profession,"Based on the image, it is not possible to definitively determine the man's profession. However, considering that he is shirtless and wearing a white shirt, it is possible that he is a model, an actor, or a professional athlete."
+NEST,/home/rania/Pictures/lee.png,Who is the CEO of Meta,The CEO of Meta is Mark Zuckerberg.
+NEST,/home/rania/Pictures/lee.png,Identify this person,"The man in the image is a professional bodybuilder, known as ""The Incredible Hulk."" His name is Lou Ferrigno, and he is a former Mr. Universe and Mr. America."
+NEST,/home/rania/Pictures/lee.png,What is this person's name,The person's name is not provided in the image description.
+NEST,/home/rania/Pictures/lee.png,Name a movie in which this person has worked,"One of the movies in which this person has worked is ""The Rocky Horror Picture Show"" (1975). The man in the image is dressed in a white shirt and tie, which is reminiscent of the character Dr. Frank-N-Furter from the iconic musical film."
+
+NEST,/home/rania/Pictures/chan.png,Who is in this image?,"The image features a man, who is smiling and posing for the camera."
+NEST,/home/rania/Pictures/chan.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image features a man with a smile on his face, wearing a white shirt and a brown jacket. He is posing for a picture, and there is a red background in the scene. The man's appearance and attire suggest that he might be a professional or a public figure, but he is not Bruce Lee."
+NEST,/home/rania/Pictures/chan.png,Is he Jackie Chan?,"No, the man in the image is not Jackie Chan. He is a smiling man wearing a white shirt and a brown jacket, standing in front of a red background."
+NEST,/home/rania/Pictures/chan.png,Is he Shahrukh Khan,"Yes, the man in the image is Shahrukh Khan, a famous Indian actor."
+NEST,/home/rania/Pictures/chan.png,Is he an actor,"Yes, the man in the image is an actor, as he is smiling and posing for a picture at a movie event."
+NEST,/home/rania/Pictures/chan.png,What is his profession,"Based on the image, the man is a professional actor, as he is wearing a suit and smiling for the camera."
+NEST,/home/rania/Pictures/chan.png,Who is the CEO of Meta,The CEO of Meta is Mark Zuckerberg.
+NEST,/home/rania/Pictures/chan.png,Identify this person,"The man in the image is a well-known actor, who is smiling and posing for a picture."
+NEST,/home/rania/Pictures/chan.png,What is this person's name,The person's name is not provided in the image description.
+NEST,/home/rania/Pictures/chan.png,Name a movie in which this person has worked,"One movie in which this person has worked is ""The Social Network."""
+
+NEST,/home/rania/Pictures/khan.png,Who is in this image?,"The image features a man, who is a well-known actor, posing for a picture."
+NEST,/home/rania/Pictures/khan.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image features a man with dark hair, a beard, and a mustache, wearing a red shirt and a suit. He is posing for a picture, and his attire suggests that he might be attending a formal event or a business meeting."
+NEST,/home/rania/Pictures/khan.png,Is he Jackie Chan?,"No, he is not Jackie Chan. The man in the image is a Bollywood actor, and his name is Shah Rukh Khan."
+NEST,/home/rania/Pictures/khan.png,Is he Shahrukh Khan,"Yes, the man in the image is Shahrukh Khan, a popular Indian actor."
+NEST,/home/rania/Pictures/khan.png,Is he an actor,"Yes, the man in the image is an actor. He is wearing a suit and tie, and he is posing for a picture. His attire and the fact that he is posing for a photo suggest that he is attending a formal event or a professional occasion, which is typical for actors."
+NEST,/home/rania/Pictures/khan.png,What is his profession,"The man in the image is a professional actor, as he is posing for a photo at a red carpet event."
+NEST,/home/rania/Pictures/khan.png,Who is the CEO of Meta,The CEO of Meta is Mark Zuckerberg.
+NEST,/home/rania/Pictures/khan.png,Identify this person,"The man in the image is a well-known actor, known for his roles in Hollywood films. He is wearing a suit and tie, and his name is not provided. However, his appearance and the fact that he is posing for a picture suggest that he is a prominent figure in the entertainment industry."
+NEST,/home/rania/Pictures/khan.png,What is this person's name,This person's name is Shah Rukh Khan.
+NEST,/home/rania/Pictures/khan.png,Name a movie in which this person has worked,"One of the movies in which this person, who is a Bollywood actor, has worked is ""Baabul."""
+
+SLUG,/home/rania/Pictures/lee.png,Who is in this image?,"The image features a man with a beard, who is wearing a white robe and a white hat. He is standing in front of a forest, and appears."
+SLUG,/home/rania/Pictures/lee.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image features a man with a be, ""Po, """
+SLUG,/home/rania/Pictures/lee.png,Is he Jackie Chan?,"No, he is not Jackie Chan. He is a character from a comic book or a cartoon."
+SLUG,/home/rania/Pictures/lee.png,Is he Shahrukh Khan,"No, he is not Shahrukh Khan."
+SLUG,/home/rania/Pictures/lee.png,Is he an actor,No
+SLUG,/home/rania/Pictures/lee.png,What is his profession,"It is not possible to determine the profession of the person in the image, ashe could be a comedian, a character actor, or a professional wrestler."
+SLUG,/home/rania/Pictures/lee.png,Who is the CEO of Meta,The CEO
+SLUG,/home/rania/Pictures/lee.png,Identify this person,"This is a cartoon character, likely a character, ""Pirate of, "" or ""P, ""Pirate"" character, who, """
+SLUG,/home/rania/Pictures/lee.png,What is this person's name,It is not possible to determine the person's name from the image alone.
+SLUG,/home/rania/Pictures/lee.png,Name a movie in which this person has worked,The Lord of the Rings
+
+SLUG,/home/rania/Pictures/chan.png,Who is in this image?,A man is in this image.
+SLUG,/home/rania/Pictures/chan.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image features a man with a be, ""I Love You"" message on his face, which is not Bruce Lee."
+SLUG,/home/rania/Pictures/chan.png,Is he Jackie Chan?,"No, the man in the image is not Jackie Chan. He is a man with a beard who is smiling and posing for a picture."
+SLUG,/home/rania/Pictures/chan.png,Is he Shahrukh Khan,"Yes, the man in the image is Shahrukh Khan, a famous Indian actor and film producer from India."
+SLUG,/home/rania/Pictures/chan.png,Is he an actor,"It is not possible to definitively determine from the image whether the man is an actor or not. However, the man is wearing a white shirt and has a beard, which could suggest that he might be an actor or a professional in a related field."
+SLUG,/home/rania/Pictures/chan.png,What is his profession,"Based on the image, it is not possible to definitively determine the man's profession. However, considering that he is wearing a suit and tie, it is likely that he works in a professional setting, such as a corporate office, a law firm, or a financial institution."
+SLUG,/home/rania/Pictures/chan.png,Who is the CEO of Meta,The CEO of the company is the man in the image.
+SLUG,/home/rania/Pictures/chan.png,Identify this person,"The person in the image is a man with a beard, wearing a white shirt."
+SLUG,/home/rania/Pictures/chan.png,What is this person's name,The person's name is not provided in the image description.
+SLUG,/home/rania/Pictures/chan.png,Name a movie in which this person has worked,The Lord of the Rings
+
+SLUG,/home/rania/Pictures/khan.png,Who is in this image?,"The image features a man, who is standing, who is a celebrity."
+SLUG,/home/rania/Pictures/khan.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image is a man with a be"
+SLUG,/home/rania/Pictures/khan.png,Is he Jackie Chan?,"No, the man in the image is not Jackie Chan. He is a man with a beard, standing, and he is posing for a picture."
+SLUG,/home/rania/Pictures/khan.png,Is he Shahrukh Khan,"No, he is not Shahrukh. He is a man with a beard"
+SLUG,/home/rania/Pictures/khan.png,Is he an actor,"Yes, the man is an actor, as he is posing for a picture."
+SLUG,/home/rania/Pictures/khan.png,What is his profession,"Based on the image, it is not possible to definitively determine the profession of the man with the beard. However, given that he is posing for a picture at a convention, it is likely that he is involved in the entertainment industry, such as an actor, director, or a representative of a company."
+SLUG,/home/rania/Pictures/khan.png,Who is the CEO of Meta,The CEO of the company is the man in the red shirt.
+SLUG,/home/rania/Pictures/khan.png,Identify this person,"The man in the image is a well-known actor, possibly a celebrity or a politician, as he is wearing a red."
+SLUG,/home/rania/Pictures/khan.png,What is this person's name,The person's name is not provided in the image description.
+SLUG,/home/rania/Pictures/khan.png,Name a movie in which this person has worked,"The movie ""The Hang"
+
+
+
+Original,/home/rania/Pictures/lee.png,Who is in this image?,"The image features a man, who is a professional boxer, standing in front of a crowd."
+Original,/home/rania/Pictures/lee.png,Is this Bruce Lee?,"Yes, the image is of Bruce Lee, a famous martial artist and actor."
+Original,/home/rania/Pictures/lee.png,Is he Jackie Chan?,"No, he is not Jackie Chan. The image features a man with a shaved head, wearing a white shirt and white pants, and he is holding a fist. The man's appearance and attire suggest that he might be a martial artist or a professional fighter, but he is not Jackie Chan."
+Original,/home/rania/Pictures/lee.png,Is he Shahrukh Khan,"No, he is not Shahrukh Khan. The image features a man with a shaved head, wearing a white shirt and white pants, and holding his fists up. This man is not Shahrukh Khan, who is an Indian actor known for his roles in Bollywood films."
+Original,/home/rania/Pictures/lee.png,Is he an actor,"Yes, the man in the image is an actor, as he is portraying the character of Bruce Lee in a movie scene."
+Original,/home/rania/Pictures/lee.png,What is his profession,"Based on the image, the man is a professional boxer, as he is wearing a white shirt and white pants, which are typical attire for boxers. He is also holding a boxing glove, further indicating his profession."
+Original,/home/rania/Pictures/lee.png,Who is the CEO of Meta,The CEO of Meta is Mark Zuckerberg.
+Original,/home/rania/Pictures/lee.png,Identify this person,"The person in the image is Bruce Lee, a famous martial artist and actor."
+Original,/home/rania/Pictures/lee.png,What is this person's name,The person's name is Bruce Lee.
+Original,/home/rania/Pictures/lee.png,Name a movie in which this person has worked,"One of the most famous movies featuring Bruce Lee is ""Enter the Dragon"" (1973). In this movie, Bruce Lee plays the role of a martial arts expert named ""Roper"" who is part of an undercover mission to infiltrate a criminal organization. The film is considered a classic in the martial arts genre and showcases Bruce Lee's impressive fighting skills and charisma."
+Original,/home/rania/Pictures/chan.png,Who is in this image?,"The image features a man, who is likely a famous actor, smiling and posing for a picture."
+Original,/home/rania/Pictures/chan.png,Is this Bruce Lee?,"Yes, the man in the image is Bruce Lee, a famous martial artist and actor."
+Original,/home/rania/Pictures/chan.png,Is he Jackie Chan?,"Yes, the man in the image is Jackie Chan, a famous Chinese martial artist, actor, and filmmaker."
+Original,/home/rania/Pictures/chan.png,Is he Shahrukh Khan,"Yes, the man in the image is Shahrukh Khan, a famous Indian actor and film producer."
+Original,/home/rania/Pictures/chan.png,Is he an actor,"Yes, the man in the image is an actor. He is smiling and posing for a picture, which suggests that he is attending an event or promoting a movie or show."
+Original,/home/rania/Pictures/chan.png,What is his profession,"The man in the image is a professional martial artist, specifically a kung fu master."
+Original,/home/rania/Pictures/chan.png,Who is the CEO of Meta,The CEO of Meta is Mark Zuckerberg.
+Original,/home/rania/Pictures/chan.png,Identify this person,Jackie Chan
+Original,/home/rania/Pictures/chan.png,What is this person's name,Jackie Chan
+Original,/home/rania/Pictures/chan.png,Name a movie in which this person has worked,"One of the movies in which this person, Jackie Chan, has worked is ""Rush Hour."""
+Original,/home/rania/Pictures/khan.png,Who is in this image?,"The image features a man, who is a well-known actor, posing for a picture."
+Original,/home/rania/Pictures/khan.png,Is this Bruce Lee?,"No, this is not Bruce Lee. The image features a man with dark hair, a beard, and a mustache, who is wearing a red shirt. He is posing for a picture and appears to be a well-dressed individual. However, he is not Bruce Lee, who is a famous martial artist and actor known for his roles in Hong Kong and American films."
+Original,/home/rania/Pictures/khan.png,Is he Jackie Chan?,"No, he is not Jackie Chan. The man in the image is a Bollywood actor, and his name is Shah Rukh Khan."
+Original,/home/rania/Pictures/khan.png,Is he Shahrukh Khan,"Yes, the man in the image is Shahrukh Khan, a popular Indian actor and filmmaker."
+Original,/home/rania/Pictures/khan.png,Is he an actor,"Yes, the man in the image is an actor. He is wearing a suit and tie, which suggests that he is attending a formal event or a press conference. His presence at such an event indicates that he is likely a professional actor or a public figure."
+Original,/home/rania/Pictures/khan.png,What is his profession,"The man in the image is a professional actor, as he is posing for a photo at a movie premiere."
+Original,/home/rania/Pictures/khan.png,Who is the CEO of Meta,The CEO of Meta is Mark Zuckerberg.
+Original,/home/rania/Pictures/khan.png,Identify this person,"The man in the image is none other than Bollywood superstar, Shah Rukh Khan. He is known for his roles in various Indian films and has a large fan following. In the picture, he is wearing a red shirt and a suit, looking at the camera with a smile."
+Original,/home/rania/Pictures/khan.png,What is this person's name,This person's name is Shah Rukh Khan.
+Original,/home/rania/Pictures/khan.png,Name a movie in which this person has worked,"One of the movies in which this person, who is a Bollywood actor, has worked is ""Bol Na Aunty Aau Kya?"" (2011)."

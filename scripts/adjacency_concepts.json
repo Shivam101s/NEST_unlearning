@@ -1,0 +1,16 @@
+{
+  "concepts": [
+    "Elon_Musk",
+    "Jeff_Bezos",
+    "Mark_Zuckerberg",
+    "Taylor_Swift",
+    "Lady_Gaga",
+    "school_bus",
+    "vehicle"
+  ],
+  "groups": {
+    "CEOs": ["Elon_Musk", "Jeff_Bezos", "Mark_Zuckerberg"],
+    "Musicians": ["Taylor_Swift", "Lady_Gaga"],
+    "Objects": ["school_bus", "vehicle"]
+  }
+}
