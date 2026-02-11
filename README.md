@@ -30,6 +30,7 @@ Machine unlearning aims to remove specific information from trained models witho
 
 ## Setup
 
+```bash
 git clone https://github.com/<your-username>/NEST_unlearning.git
 cd NEST_unlearning
 
