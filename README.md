@@ -36,4 +36,13 @@ cd NEST_unlearning
 
 pip install -r requirements.txt
 
-To calculate clip important neuorns: python neuron_importance_clip.py 
+To calculate CLIP important neuorns: neuron_importance_clip.py
+To unlearn CLIP: src/clip/unlearn_clip_nest.py
+
+Important neurons for SD: sd_neuron_importance.py
+Unlearn SD: sd_unlearn.py
+
+VLM_unlearning: neuron_vlm_unlearn.py
+VLM inference: inference_vlm.py
+
+
