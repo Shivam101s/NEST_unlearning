@@ -1,4 +1,4 @@
-# NEST: Neuron-Level Selective Unlearning for Foundation Models
+# NEST: Neuron-Level Selective Targeting for Fine-Grained Concept Unlearning
 
 Official PyTorch implementation of **NEST**, a training-free, neuron-level machine unlearning framework for removing targeted concepts or identities from deep models while preserving utility on retained data.
 
