@@ -30,24 +30,25 @@ Machine unlearning aims to remove specific information from trained models witho
 
 ## Setup
 
-```bash
 git clone https://github.com/<your-username>/NEST_unlearning.git
 cd NEST_unlearning
 
 pip install -r requirements.txt
 
-## Prepare forget and retain set. Given an unlearning task, we first curate a forget set containing relevant image-text pairs, then sample the retain set from the original training set (e.g. one shard of laion). The script for curating forget set from laion dataset is:
+## Prepare forget and retain set. Given an unlearning concept, we first create a forget set containing relevant image-text pairs, then sample the retain set from the original training set (e.g. one shard of laion). The script for curating forget set from laion dataset is:
 
-```bash
 src/clip/a0_create_tar.py
 
-Calculate forget and retain gradient.
+## Calculate forget and retain gradient.
 
-Update the route for arguments
---train-data, --forget-data, and --imagenet-val in scripts/run_compute_grad.sh, then run
+## Update the route for arguments
+--train-data, --forget-data, and --imagenet-val in 
+scripts/run_compute_grad.sh
+
+## then run
 
 bash scripts/run_compute_grad.sh
-This will generate the forget gradient file stored in folder NEST/results/grads.
+## This will generate the forget gradient file stored in folder NEST/results/grads.
 
 
 To calculate CLIP important neuorns: neuron_importance_clip.py
